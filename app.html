@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promptbrary - AI Prompt Engineering</title>
+    <link rel="stylesheet" href="app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="images/promptbrarylogo.svg" alt="Promptbrary Logo">
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li class="active" data-page="prompt-enhancer">
+                        <img src="icons/prompt_enhance_icon.svg" alt="Prompt Enhancer" class="nav-icon">
+                        <span>Prompt Enhancer</span>
+                    </li>
+                    <li data-page="social-media">
+                        <img src="icons/social_media_icon.svg" alt="Social Media" class="nav-icon">
+                        <span>Social Media Content</span>
+                    </li>
+                    <li data-page="history">
+                        <img src="icons/history.svg" alt="History" class="nav-icon">
+                        <span>History</span>
+                    </li>
+                    <li data-page="saved">
+                        <img src="icons/saved_icon.svg" alt="Saved" class="nav-icon">
+                        <span>Saved</span>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="user-profile">
+                <img src="images/profile.jpg" alt="User Profile" class="profile-pic">
+                <div class="user-info">
+                    <div class="user-name">Subas Kathayat</div>
+                    <div class="user-email">subas@example.com</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Center Panel -->
+            <section class="panel center-panel" id="prompt-enhancer">
+                <h2>What would you like to enhance?</h2>
+                <div class="input-container">
+                    <textarea id="prompt-input" placeholder="Type your prompt here..."></textarea>
+                    
+                    <div class="options-row">
+                        <div class="form-group">
+                            <label for="length">Length:</label>
+                            <select id="length">
+                                <option value="short">Short</option>
+                                <option value="auto" selected>Auto</option>
+                                <option value="medium">Medium</option>
+                                <option value="long">Long</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="model">Choose Model:</label>
+                            <select id="model">
+                                <option value="gpt-4">GPT-4</option>
+                                <option value="gpt-3.5-turbo" selected>GPT-3.5 Turbo</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="api-key-container">
+                        <div class="form-group">
+                            <label for="api-key">API Key:</label>
+                            <div class="input-with-icon">
+                                <input type="password" id="api-key" placeholder="Enter your API key">
+                                <button class="toggle-password" type="button">
+                                    <img src="icons/View.svg" alt="Show/Hide" class="eye-icon">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="enhance-btn" class="btn btn-primary">
+                        <span>Enhance Prompt</span>
+                        <img src="icons/send_icon_right_arrow.svg" alt="Enhance" class="btn-icon">
+                    </button>
+                </div>
+            </section>
+
+            <!-- Social Media Panel (Hidden by default) -->
+            <section class="panel center-panel" id="social-media" style="display: none;">
+                <h2>Social Media Content Generator</h2>
+                <div class="input-container">
+                    <div class="form-group">
+                        <label for="content-type">Content Type:</label>
+                        <select id="content-type">
+                            <option value="instagram">Instagram Caption</option>
+                            <option value="twitter">X (Twitter) Post</option>
+                            <option value="linkedin">LinkedIn Post</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="post-idea">Write your post idea:</label>
+                        <textarea id="post-idea" placeholder="Describe what your post is about..."></textarea>
+                    </div>
+                    
+                    <div class="options-row">
+                        <div class="form-group">
+                            <label for="formality">Formality:</label>
+                            <select id="formality">
+                                <option value="auto">Auto</option>
+                                <option value="casual">Casual</option>
+                                <option value="neutral">Neutral</option>
+                                <option value="formal">Formal</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tone">Tone:</label>
+                            <select id="tone">
+                                <option value="auto">Auto</option>
+                                <option value="enthusiastic">Enthusiastic</option>
+                                <option value="concerned">Concerned</option>
+                                <option value="sincere">Sincere</option>
+                                <option value="sarcasm">Sarcasm</option>
+                                <option value="empathetic">Empathetic</option>
+                                <option value="candid">Candid</option>
+                                <option value="humorous">Humorous</option>
+                                <option value="optimistic">Optimistic</option>
+                                <option value="humble">Humble</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="api-key-container">
+                        <div class="form-group">
+                            <label for="social-api-key">API Key:</label>
+                            <div class="input-with-icon">
+                                <input type="password" id="social-api-key" placeholder="Enter your API key">
+                                <button class="toggle-password" type="button">
+                                    <img src="icons/eye_icon.svg" alt="Show/Hide" class="eye-icon">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="generate-post-btn" class="btn btn-primary">
+                        <span>Generate Post</span>
+                        <img src="icons/send_icon_right_arrow.svg" alt="Generate" class="btn-icon">
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Right Panel -->
+            <section class="panel right-panel">
+                <div class="panel-header">
+                    <h2>Your Enhanced Prompt</h2>
+                    <div class="action-buttons">
+                    <button id="copy-btn" class="btn-with-text">
+                        <img src="icons/copy_icon.svg" alt="Copy">
+                        <span>Copy</span>
+                    </button>
+                    <button id="save-btn" class="btn-with-text">
+                        <img src="icons/saved_icon.svg" alt="Save">
+                        <span>Save</span>
+                    </button>
+                </div>
+                </div>
+                <div class="output-container">
+                    <div id="output-content" class="output-content">
+                        <p class="placeholder-text">Your enhanced prompt will appear here...</p>
+                    </div>
+                </div>
+                <div class="re-enhance-container">
+                    <button id="re-enhance-btn" class="btn-with-text">
+                        <img src="icons/re-enhance_icon.svg" alt="Re-enhance">
+                        <span>Re-enhance</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
