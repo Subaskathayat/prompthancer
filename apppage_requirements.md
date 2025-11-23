@@ -1,9 +1,9 @@
 ✅ FULL STRUCTURE DESCRIPTION (HTML + CSS + JS)
 
 Project: Promptbrary — AI-powered Prompt Engineering SaaS
-Goal: Build a minimal, modern, clean white landing page with soft spacing, large typography, and simple layout.
+Goal: Build a minimal, modern, clean white App page for our SaaS with soft spacing, large typography, and simple layout.
 
-This document defines the layout, components, and interactions needed to build the basic structure of the app
+This document defines the layout, components, and interactions needed to build the basic structure for app.html page
 
 1️⃣ Page Layout Overview
 

@@ -152,25 +152,3 @@ Copyright line
 Background should remain white, with very light border on top.
 
 ⭐ 9. Page Requirements Summary
-
-You must produce:
-
-Clean, minimal HTML structure
-
-Modern white-themed CSS styling
-
-Light animations optional (fade-in)
-
-Fully responsive layout
-
-No external frameworks unless necessary (pure HTML/CSS/JS is ok)
-
-⭐ 10. Tone of the Landing Page
-
-Professional
-
-Clean and modern
-
-Easy to read
-
-Friendly for SaaS
