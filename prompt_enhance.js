@@ -17,10 +17,17 @@ class PromptEnhancer {
         this.outputCharCount = document.getElementById('output-char-count');
         
         // Initialize character counts
-        this.updateCharCounts();
+        this.apiKey = apiKey;
+        
+        // Initialize state flags
+        this.isCopying = false;
+        this.isSaving = false;
         
         // Initialize event listeners
         this.initializeEventListeners();
+        
+        // Set initial button states
+        this.updateButtonStates();
     }
 
     async enhancePrompt(prompt, length = 'auto') {
@@ -200,25 +207,38 @@ Important: Only return the enhanced prompt, no additional text, explanations, or
     }
     
     async copyToClipboard() {
+        // Prevent multiple clicks
+        if (this.isCopying) return;
+        this.isCopying = true;
+
         const textToCopy = this.outputContent.innerText;
         if (textToCopy && !this.outputContent.querySelector('.placeholder-text')) {
             try {
                 await navigator.clipboard.writeText(textToCopy);
                 // Show feedback
-                const originalClass = this.copyBtn.className;
                 this.copyBtn.classList.add('btn-copied');
-                setTimeout(() => {
-                    this.copyBtn.className = originalClass;
-                }, 2000);
                 this.showToast('Copied to clipboard!');
+                
+                // Reset button state after delay
+                setTimeout(() => {
+                    this.copyBtn.classList.remove('btn-copied');
+                    this.isCopying = false;
+                }, 2000);
             } catch (error) {
                 console.error('Failed to copy text:', error);
                 this.showToast('Failed to copy text', true);
+                this.isCopying = false;
             }
+        } else {
+            this.isCopying = false;
         }
     }
     
     async savePrompt() {
+        // Prevent multiple clicks
+        if (this.isSaving) return;
+        this.isSaving = true;
+
         const enhancedPrompt = this.outputContent.innerText;
         if (enhancedPrompt && !this.outputContent.querySelector('.placeholder-text')) {
             try {
@@ -232,17 +252,21 @@ Important: Only return the enhanced prompt, no additional text, explanations, or
                 localStorage.setItem('savedPrompts', JSON.stringify(savedItems));
                 
                 // Show feedback
-                const originalClass = this.saveBtn.className;
                 this.saveBtn.classList.add('btn-saved');
-                setTimeout(() => {
-                    this.saveBtn.className = originalClass;
-                }, 2000);
-                
                 this.showToast('Prompt saved successfully!');
+                
+                // Reset button state after delay
+                setTimeout(() => {
+                    this.saveBtn.classList.remove('btn-saved');
+                    this.isSaving = false;
+                }, 2000);
             } catch (error) {
                 console.error('Failed to save prompt:', error);
                 this.showToast('Failed to save prompt', true);
+                this.isSaving = false;
             }
+        } else {
+            this.isSaving = false;
         }
     }
     
@@ -251,6 +275,28 @@ Important: Only return the enhanced prompt, no additional text, explanations, or
         if (enhancedPrompt && !this.outputContent.querySelector('.placeholder-text')) {
             this.promptInput.value = enhancedPrompt;
             this.enhancePromptHandler();
+        }
+    }
+    
+    updateButtonStates() {
+        const hasContent = this.outputContent && this.outputContent.innerText.trim().length > 0;
+        
+        if (this.copyBtn) {
+            this.copyBtn.disabled = !hasContent;
+            this.copyBtn.style.opacity = hasContent ? '1' : '0.5';
+            this.copyBtn.style.cursor = hasContent ? 'pointer' : 'not-allowed';
+        }
+        
+        if (this.saveBtn) {
+            this.saveBtn.disabled = !hasContent;
+            this.saveBtn.style.opacity = hasContent ? '1' : '0.5';
+            this.saveBtn.style.cursor = hasContent ? 'pointer' : 'not-allowed';
+        }
+        
+        if (this.reEnhanceBtn) {
+            this.reEnhanceBtn.disabled = !hasContent;
+            this.reEnhanceBtn.style.opacity = hasContent ? '1' : '0.5';
+            this.reEnhanceBtn.style.cursor = hasContent ? 'pointer' : 'not-allowed';
         }
     }
     
@@ -281,6 +327,9 @@ Important: Only return the enhanced prompt, no additional text, explanations, or
             } else {
                 this.outputCharCount.classList.remove('limit-reached');
             }
+            
+            // Update button states based on character count
+            this.updateButtonStates();
         }
     }
     
