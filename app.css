@@ -140,7 +140,25 @@
 .input-container {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+/* Character count */
+.char-count {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+#input-char-count {
+    align-self: flex-end;
+    margin-top: 0.25rem;
+}
+
+.char-count.limit-reached {
+    color: #ef4444;
+    font-weight: 500;
 }
 
 textarea {
@@ -315,7 +333,26 @@ select:focus, input[type="text"]:focus, input[type="password"]:focus {
     border-radius: var(--border-radius);
     padding: 1.5rem;
     min-height: 300px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 2.5rem; /* Make room for the footer */
+}
+
+.output-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.5rem 1.5rem;
+    border-top: 1px solid #e5e5e5;
+    background-color: #f9fafb;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Re-enhance button container */
@@ -323,6 +360,86 @@ select:focus, input[type="text"]:focus, input[type="password"]:focus {
     display: flex;
     justify-content: flex-end;
     margin-top: 0.5rem;
+}
+
+/* Dialog Styles */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.dialog-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dialog {
+    background-color: white;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 450px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(20px);
+    transition: transform 0.2s ease;
+}
+
+.dialog-overlay.visible .dialog {
+    transform: translateY(0);
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.dialog-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.dialog-content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.dialog-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.btn-secondary {
+    background-color: #f3f4f6;
+    color: #111827;
+    border: 1px solid #d1d5db;
+}
+
+.btn-secondary:hover {
+    background-color: #e5e7eb;
 }
 
 /* Re-enhance button styles */

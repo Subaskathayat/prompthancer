@@ -51,7 +51,10 @@
             <section class="panel center-panel" id="prompt-enhancer">
                 <h2>What would you like to enhance?</h2>
                 <div class="input-container">
-                    <textarea id="prompt-input" placeholder="Type your prompt here..."></textarea>
+                    <div class="input-container">
+                        <textarea id="prompt-input" placeholder="Type your prompt here..."></textarea>
+                        <div class="char-count" id="input-char-count">0 characters</div>
+                    </div>
                     
                     <div class="options-row">
                         <div class="form-group">
@@ -173,8 +176,10 @@
                 </div>
                 </div>
                 <div class="output-container">
-                    <div id="output-content" class="output-content">
-                        <p class="placeholder-text">Your enhanced prompt will appear here...</p>
+                    <div id="output-content" class="output-content" contenteditable="false">
+                    </div>
+                    <div class="output-footer">
+                        <div class="char-count" id="output-char-count">0 characters</div>
                     </div>
                 </div>
                 <div class="re-enhance-container">
@@ -187,6 +192,28 @@
         </main>
     </div>
 
-    <script src="app.js"></script>
+    <!-- Dialog Component -->
+    <div id="dialog-overlay" class="dialog-overlay">
+        <div class="dialog">
+            <div class="dialog-header">
+                <h3 id="dialog-title">Title</h3>
+                <button id="dialog-close" class="btn-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div id="dialog-content" class="dialog-content">
+                <!-- Content will be inserted here -->
+            </div>
+            <div class="dialog-footer">
+                <button id="dialog-cancel" class="btn btn-secondary" style="display: none;">Cancel</button>
+                <button id="dialog-confirm" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
 </body>
 </html>
