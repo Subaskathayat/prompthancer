@@ -480,6 +480,42 @@ select:focus, input[type="text"]:focus, input[type="password"]:focus {
     visibility: visible;
 }
 
+/* Empty State Styles */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.empty-state-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+
+.empty-state-text {
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Center panel adjustments for empty state */
+.center-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+}
+
 .dialog {
     background-color: white;
     border-radius: var(--border-radius);

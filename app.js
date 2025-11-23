@@ -39,15 +39,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById(page).style.display = 'block';
                 document.querySelector('.right-panel').style.display = 'block';
             } else {
-                // For history and saved pages, we'll implement this later
-                document.querySelector('.center-panel').style.display = 'block';
+                // For history and saved pages, show empty state
+                const centerPanel = document.querySelector('.center-panel');
+                centerPanel.style.display = 'flex';
+                centerPanel.style.alignItems = 'center';
+                centerPanel.style.justifyContent = 'center';
+                centerPanel.style.height = '100%';
                 document.querySelector('.right-panel').style.display = 'block';
-                const outputContent = document.getElementById('output-content');
-                if (outputContent) {
-                    outputContent.innerHTML = `<p class="placeholder-text">${
-                        page === 'history' ? 'Your history will appear here...' : 'Your saved items will appear here...'
-                    }</p>`;
-                }
+                
+                const isHistory = page === 'history';
+                centerPanel.innerHTML = `
+                    <div class="empty-state">
+                        <img src="icons/history.svg" alt="${isHistory ? 'History' : 'Saved Items'}" class="empty-state-icon">
+                        <p class="empty-state-text">${isHistory ? 'No history found' : 'No saved items yet'}</p>
+                    </div>
+                `;
             }
         });
     });

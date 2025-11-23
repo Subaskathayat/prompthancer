@@ -117,7 +117,10 @@
                     
                     <div class="form-group">
                         <label for="post-idea">Write your post idea <span class="required">*</span></label>
-                        <textarea id="post-idea" placeholder="Describe what your post is about..." required></textarea>
+                        <div class="input-container">
+                            <textarea id="post-idea" placeholder="Describe what your post is about..." required></textarea>
+                            <div class="char-count" id="post-idea-char-count">0 characters</div>
+                        </div>
                     </div>
                     
                     <div class="form-group">
@@ -183,24 +186,21 @@
             <!-- Right Panel -->
             <section class="panel right-panel">
                 <div class="panel-header">
-                    <h2>Your Enhanced Prompt</h2>
+                    <h2>Your Social Media Post</h2>
                     <div class="action-buttons">
-                    <button id="copy-btn" class="btn-with-text">
+                    <button id="copy-post-btn" class="btn-with-text">
                         <img src="icons/copy_icon.svg" alt="Copy">
                         <span>Copy</span>
                     </button>
-                    <button id="save-btn" class="btn-with-text">
+                    <button id="save-post-btn" class="btn-with-text">
                         <img src="icons/saved_icon.svg" alt="Save">
                         <span>Save</span>
                     </button>
                 </div>
                 </div>
                 <div class="output-container">
-                    <div id="output-content" class="output-content" contenteditable="false">
-                    </div>
-                    <div class="output-footer">
-                        <div class="char-count" id="output-char-count">0 characters</div>
-                    </div>
+                    <div id="output-content" class="output-content" contenteditable="true"></div>
+                    <div class="char-count" id="output-char-count">0 characters</div>
                 </div>
                 <div class="re-enhance-container">
                     <button id="re-enhance-btn" class="btn-with-text">

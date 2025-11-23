@@ -117,7 +117,46 @@ class SocialMediaPostGenerator {
         }, 200);
     }
 
-    // ... (rest of the methods remain the same)
+    async generateSocialMediaPost(idea, platform, formality, tone, apiKey) {
+        const systemPrompt = `You are a professional social media content creator. Generate an engaging, platform-optimized social media post based on the following details no emojis:
+- Platform: ${platform}
+- Tone: ${tone}
+- Formality: ${formality}
+
+Make sure the post is engaging, on-brand, and optimized for the specified platform.`;
+
+        const messages = [
+            { role: 'system', content: systemPrompt },
+            { 
+                role: 'user', 
+                content: `Generate a ${tone} social media post for ${platform} with ${formality} formality based on this idea: ${idea}`
+            }
+        ];
+
+        const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json',
+                'HTTP-Referer': window.location.href,
+                'X-Title': 'Promptbrary'
+            },
+            body: JSON.stringify({
+                model: 'openai/gpt-3.5-turbo',
+                messages: messages,
+                temperature: 0.7,
+                max_tokens: 1000
+            })
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error?.message || 'Failed to generate post');
+        }
+
+        const data = await response.json();
+        return data.choices[0]?.message?.content?.trim() || '';
+    }
 
     async generatePost() {
         const postIdea = this.postIdeaInput?.value.trim();
@@ -125,22 +164,25 @@ class SocialMediaPostGenerator {
         
         // Validate required fields
         if (!postIdea) {
-            await dialog.alert('Please enter your post idea', 'Missing Information');
+            this.showError('Please enter your post idea');
             this.postIdeaInput.focus();
             return;
         }
 
         if (!apiKey) {
-            await dialog.alert('Please enter your API key', 'API Key Required');
+            this.showError('Please enter your API key');
             this.apiKeyInput.focus();
             return;
         }
 
         // Show loading state
         this.isGenerating = true;
-        const originalText = this.generatePostBtn.innerHTML;
-        this.generatePostBtn.disabled = true;
-        this.generatePostBtn.innerHTML = '<span>Generating...</span><div class="spinner"></div>';
+        this.updateButtonStates();
+        
+        if (this.outputContent) {
+            this.outputContent.textContent = 'Generating your post...';
+            this.outputContent.classList.remove('error');
+        }
 
         try {
             const platform = this.platformChips.currentValue;
@@ -149,36 +191,83 @@ class SocialMediaPostGenerator {
             
             const post = await this.generateSocialMediaPost(postIdea, platform, formality, tone, apiKey);
             
-            // Set the generated post and make it editable
+            // Set the generated post
             if (this.outputContent) {
-                this.outputContent.innerHTML = post.replace(/\n/g, '<br>');
-                this.outputContent.contentEditable = 'true';
-                this.outputContent.focus();
+                this.outputContent.textContent = post;
+                this.outputContent.classList.remove('error');
             }
-            
-            // Update button states
-            this.updateButtonStates();
             
         } catch (error) {
             console.error('Error generating post:', error);
-            await dialog.error(`Error: ${error.message || 'Failed to generate post'}`, 'Error');
+            this.showError(`Error: ${error.message || 'Failed to generate post'}`);
         } finally {
-            // Reset button
-            this.generatePostBtn.disabled = false;
-            this.generatePostBtn.innerHTML = originalText;
             this.isGenerating = false;
+            this.updateButtonStates();
         }
     }
 
-    // ... (rest of the methods remain the same)
+    showError(message) {
+        this.outputContent.textContent = message;
+        this.outputContent.classList.add('error');
+    }
+
+    updateButtonStates() {
+        // Update generate button
+        if (this.generatePostBtn) {
+            this.generatePostBtn.disabled = this.isGenerating;
+            this.generatePostBtn.textContent = this.isGenerating ? 'Generating...' : 'Generate Post';
+        }
+        
+        // Update copy button
+        if (this.copyBtn) {
+            this.copyBtn.disabled = this.isGenerating || !this.outputContent.textContent.trim();
+        }
+        
+        // Update save button
+        if (this.saveBtn) {
+            this.saveBtn.disabled = this.isGenerating || !this.outputContent.textContent.trim();
+        }
+    }
+
+    copyToClipboard() {
+        if (this.isCopying || !this.outputContent.textContent.trim()) return;
+        
+        this.isCopying = true;
+        navigator.clipboard.writeText(this.outputContent.textContent)
+            .then(() => {
+                const originalText = this.copyBtn.textContent;
+                this.copyBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    this.copyBtn.textContent = originalText;
+                    this.isCopying = false;
+                }, 2000);
+            })
+            .catch(err => {
+                console.error('Failed to copy:', err);
+                this.isCopying = false;
+            });
+    }
+
+    savePost() {
+        if (this.isSaving || !this.outputContent.textContent.trim()) return;
+        
+        // In a real app, you would save this to a database or local storage
+        // For now, we'll just show a message
+        this.isSaving = true;
+        const originalText = this.saveBtn.textContent;
+        this.saveBtn.textContent = 'Saved!';
+        setTimeout(() => {
+            this.saveBtn.textContent = originalText;
+            this.isSaving = false;
+        }, 2000);
+    }
 }
 
 // Initialize the social media post generator when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const socialMediaGenerator = new SocialMediaPostGenerator();
-    
-    // Make it available globally if needed
-    window.socialMediaGenerator = socialMediaGenerator;
+    // Check if we're on the social media post generator page
+    if (document.getElementById('generate-post-btn')) {
+        // Initialize the social media post generator
+        const socialMediaGenerator = new SocialMediaPostGenerator();
+    }
 });
-
-export default SocialMediaPostGenerator;
