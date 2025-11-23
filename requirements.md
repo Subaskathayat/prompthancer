@@ -1,7 +1,9 @@
 ✅ FULL STRUCTURE DESCRIPTION (HTML + CSS + JS)
-Project: Promptbrary
 
-This document defines the layout, components, and interactions needed to build the basic structure of the app.
+Project: Promptbrary — AI-powered Prompt Engineering SaaS
+Goal: Build a minimal, modern, clean white landing page with soft spacing, large typography, and simple layout.
+
+This document defines the layout, components, and interactions needed to build the basic structure of the app
 
 1️⃣ Page Layout Overview
 
@@ -28,19 +30,19 @@ Navigation and app organization.
 
 Content
 
-App Name / Logo area (top)
+ Logo area (top)
 
-Navigation Items
+Navigation Items , icons are in 'icons/' root folder
 
-Prompt Enhancer
+icon + Prompt Enhancer
 
-Social Media Content
+icon Social Media Content
 
-History
+icon+ History
 
-Saved
+liked icon + Saved
 
-Footer Logo / Branding (bottom)
+Profile, profile picture images/profile.jpg of user with name "Subas Kathayat" (bottom)
 
 Behavior
 
@@ -69,13 +71,22 @@ Title: “What would you like to enhance?”
 
 A large textarea for input.
 
-Dropdown: “Choose Model” (ChatGPT, Claude, Generic)
+Length select : 
 
-Button: Enhance Prompt (primary action)
+Short
+Auto
+Medium
+Long
+
+Dropdown: “Choose Model” (ChatGPT)
+
+input field for entering API key (has hide and show eye icon)
+
+Button: Enhance Prompt + icons/send_icon_right_arrow (primary action)
 
 Behavior
 
-Clicking Enhance sends the text for processing (handled by JS or later API).
+Clicking Enhance sends the text for processing (handled by JS).
 
 After enhancement, the right panel updates.
 
@@ -100,13 +111,13 @@ Title: “Your Enhanced Prompt”
 
 Output area (scrollable)
 
-Buttons:
+Buttons with icons :
 
 Copy
 
 Save
 
-Re-Enhance (optional)
+Re-Enhance
 
 Behavior
 
@@ -141,6 +152,55 @@ Center:
 Options such as: Instagram caption, X post, LinkedIn post
 
 Input fields based on selection
+
+
+Title: “write your post idea”
+
+A large textarea for input.
+
+Selection Formality:
+
+Auto 
+
+Casual
+
+Neutral
+
+Formal
+
+Selection of Tone:
+
+Auto
+Enthusiastic
+Concerned
+Sincere
+sarcasm
+Empathetic
+Candid
+Humorous
+Optimistic
+Humble
+
+input field for entering API key (has hide and show eye icon)
+
+Button: Generate Post + icons/send_icon_right_arrow (primary action)
+
+Behavior
+
+Clicking Generate Post sends the post idea for processing (handled by JS).
+
+After enhancement, the right panel updates.
+
+Styling
+
+White card/container.
+
+Rounded corners & subtle shadows.
+
+Padding ~ 24px.
+
+Vertical spacing between elements.
+
 
 Right:
 
@@ -217,3 +277,25 @@ Layout Example
 .right-panel {
   flex: 1;
 }
+
+You must produce:
+
+Clean, minimal HTML structure
+
+Modern white-themed CSS styling
+
+Light animations optional (fade-in)
+
+Fully responsive layout
+
+No external frameworks unless necessary (pure HTML/CSS/JS is ok)
+
+⭐ 10. Tone of the App Page
+
+Professional
+
+Clean and modern
+
+Easy to read
+
+Friendly for SaaS
