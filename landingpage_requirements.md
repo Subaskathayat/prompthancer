@@ -1,8 +1,8 @@
 HTML + CSS + JavaScript, minimal, modern, white, clean, SaaS-style.
 
-✅ Landing Page Specification for Promptbrary (Agent-Ready Description)
+✅ Landing Page Specification for Prompthancer (Agent-Ready Description)
 
-Project: Promptbrary — AI-powered Prompt Engineering SaaS
+Project: Prompthancer — AI-powered Prompt Engineering SaaS
 Goal: Build a minimal, modern, clean white landing page with soft spacing, large typography, and simple layout.
 
 ⭐ 1. General Style / Theme Requirements
@@ -49,7 +49,7 @@ Heading:
 “Prompt Engineering for Every Need!”
 
 Subheading:
-“Promptbrary turns your simple ideas into optimized AI prompts under 10 seconds.”
+“Prompthancer turns your simple ideas into optimized AI prompts under 10 seconds.”
 
 Short description below:
 “Craft smarter, faster, and more powerful prompts instantly using the latest AI models.”
@@ -74,7 +74,7 @@ Craft Smarter, Faster, and More Powerful Prompts Instantly
 
 Paragraph:
 
-Stop wasting hours fine-tuning prompts — with Promptbrary, you can transform simple ideas into professional-grade prompts in seconds. This AI-powered tool helps you generate perfect prompts for ChatGPT, Claude, Gemini, and more. Enhance your prompts, generate social posts, organize your library, and craft image prompts for DALL·E, Midjourney, or Stable Diffusion — all in one place.
+Stop wasting hours fine-tuning prompts — with Prompthancer, you can transform simple ideas into professional-grade prompts in seconds. This AI-powered tool helps you generate perfect prompts for ChatGPT, Claude, Gemini, and more. Enhance your prompts, generate social posts, organize your library, and craft image prompts for DALL·E, Midjourney, or Stable Diffusion — all in one place.
 
 ⭐ 5. Key Features Section (Three or Four Columns)
 
@@ -143,7 +143,7 @@ Short text label
 
 Minimal footer with:
 
-Logo: Promptbrarylogo
+Logo: Prompthancerlogo
 
 Links: Terms, Privacy, Contact
 
