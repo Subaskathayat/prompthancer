@@ -125,17 +125,15 @@
     max-width: 55%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0;
+    padding: 1rem 3rem;
+    overflow-y: auto;
+    gap: 1.5rem;
 }
 
 /* Remove the empty state centering for center panel */
 .center-panel:not(.empty-state) {
     align-items: flex-start;
-    justify-content: flex-start;
 }
-
-
 
 .right-panel {
     max-width: 45%;
@@ -151,11 +149,10 @@
     border-bottom: 1px solid #e5e5e5;
 }
 
-
 /* Input Container */
 .input-container {
     width: 100%;
-    padding: 20px 24px;
+    padding: 5px 10px;
     box-sizing: border-box;
 }
 
@@ -167,7 +164,7 @@
 
 #input-char-count {
     align-self: flex-end;
-    margin-top: 0.25rem;
+    margin-top: rem;
 }
 
 .char-count.limit-reached {
@@ -180,7 +177,7 @@
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
 }
 
 .chip {
@@ -270,10 +267,10 @@
 }
 
 textarea {
-    
     width: 100%;
     min-height: 200px;
-    padding: 1rem;
+    padding: 1.25rem;
+    margin: 0.rem 2rem;
     border: 1px solid #d1d5db;
     border-radius: var(--border-radius);
     font-family: inherit;
@@ -285,7 +282,7 @@ textarea {
 
 textarea:focus {
     outline: none;
-    border-color: #3b82f6;
+    border-color: #000000;
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
@@ -321,9 +318,17 @@ select:focus, input[type="text"]:focus, input[type="password"]:focus {
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
+.input-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: rem 0.5rem ;
+}
+
 /* API Key Input */
 .api-key-container {
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
 }
 
 .input-with-icon {
@@ -435,6 +440,7 @@ select:focus, input[type="text"]:focus, input[type="password"]:focus {
     gap: 0.75rem;
     align-items: center;
 }
+
 /* Output container */
 .output-container {
     background-color: #f9fafb;
@@ -527,7 +533,6 @@ select:focus, input[type="text"]:focus, input[type="password"]:focus {
     justify-content: center;
     min-height: 300px;
 }
-
 
 .dialog {
     background-color: white;
@@ -702,13 +707,15 @@ _:-webkit-full-screen, .output-content[contenteditable="true"]:focus {
 
 /* Re-enhance button styles */
 #re-enhance-btn {
+    margin: 1rem 0 0.5rem;
+    align-self: flex-start;
+    padding: 0.75rem 1.75rem;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     background-color: #f3f4f6;
     border: 1px solid #d1d5db;
     border-radius: var(--border-radius);
-    padding: 0.5rem 1rem;
     font-size: 0.875rem;
     color: #4b5563;
     cursor: pointer;
