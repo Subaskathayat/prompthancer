@@ -14,6 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const togglePasswordBtns = document.querySelectorAll('.toggle-password');
     const apiKeyInputs = document.querySelectorAll('input[type="password"]');
     const modelSelect = document.getElementById('model');
+    const rightPanelHeader = document.getElementById('right-panel-header');
+    
+    // Map of page names to their corresponding header text
+    const headerTextMap = {
+        'prompt-enhancer': 'Your Enhanced Prompt',
+        'social-media': 'Your Social Media Post',
+        'history': 'Your History',
+        'saved': 'Your Saved Items'
+    };
     
     // Disable model selection as requested
     if (modelSelect) {
@@ -23,37 +32,37 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navigation
     navItems.forEach(item => {
         item.addEventListener('click', function() {
-            // Remove active class from all nav items
-            navItems.forEach(nav => nav.classList.remove('active'));
-            // Add active class to clicked item
+            const target = this.getAttribute('data-page');
+            
+            // Update active state
+            navItems.forEach(i => i.classList.remove('active'));
             this.classList.add('active');
             
-            // Hide all panels
+            // Show target panel and hide others
             panels.forEach(panel => {
-                panel.style.display = 'none';
+                if (panel.id === target) {
+                    // Show the selected center panel
+                    panel.style.display = 'flex';
+                    
+                    // Update right panel header based on the selected section
+                    if (rightPanelHeader && headerTextMap[target]) {
+                        rightPanelHeader.textContent = headerTextMap[target];
+                    }
+                } else if (panel.classList.contains('center-panel')) {
+                    // Hide other center panels
+                    panel.style.display = 'none';
+                } else if (panel.classList.contains('right-panel')) {
+                    // Keep right panel visible
+                    panel.style.display = 'block';
+                } else {
+                    panel.style.display = 'none';
+                }
             });
             
-            // Show the selected panel
-            const page = this.getAttribute('data-page');
-            if (page === 'prompt-enhancer' || page === 'social-media') {
-                document.getElementById(page).style.display = 'block';
-                document.querySelector('.right-panel').style.display = 'block';
-            } else {
-                // For history and saved pages, show empty state
-                const centerPanel = document.querySelector('.center-panel');
-                centerPanel.style.display = 'flex';
-                centerPanel.style.alignItems = 'center';
-                centerPanel.style.justifyContent = 'center';
-                centerPanel.style.height = '100%';
-                document.querySelector('.right-panel').style.display = 'block';
-                
-                const isHistory = page === 'history';
-                centerPanel.innerHTML = `
-                    <div class="empty-state">
-                        <img src="icons/history.svg" alt="${isHistory ? 'History' : 'Saved Items'}" class="empty-state-icon">
-                        <p class="empty-state-text">${isHistory ? 'No history found' : 'No saved items yet'}</p>
-                    </div>
-                `;
+            // Ensure right panel is visible
+            const rightPanel = document.querySelector('.right-panel');
+            if (rightPanel) {
+                rightPanel.style.display = 'block';
             }
         });
     });
