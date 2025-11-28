@@ -45,7 +45,7 @@ class PromptEnhancer {
 Make it clear, structured, powerful, and optimized for high-quality outputs. 
 ${lengthInstruction}
 
-Important: Only return the enhanced prompt, no additional text, explanations, or markdown formatting.`;
+Important: Only return the enhanced prompt, no additional text like your enhanced prompt, explanations, or markdown formatting.`;
 
         const messages = [
             { role: 'system', content: systemPrompt },
