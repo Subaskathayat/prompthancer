@@ -181,8 +181,8 @@ img {
 
 .hero .description {
     font-size: 1.125rem;
-    margin-bottom: 2.5rem;
-    padding: 6rem 1rem 6rem 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem 1rem 1rem 1rem;
     max-width: 600px;
     border-radius: 8px;
 }
@@ -206,6 +206,88 @@ img {
 
 
 }
+
+/*Why us */
+
+.whyussec{
+    padding: 5rem 0;
+
+}
+
+.whyussec img {
+    display: block;
+    margin: 0 auto 0rem;
+    height: 80px;
+}
+
+.whyussec h2{
+    font-size: 2.25rem;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 6rem;
+}
+
+/*why description left*/
+
+
+.whydescriptionleft{
+    background-color: var(--primary);
+    padding: 3rem ;
+    max-width: 60%;
+    border-radius: 8px;
+    margin-top: 4rem;
+    margin-left: 6rem;
+    border: 2px solid #b5bac6;
+    box-shadow: 0 10px 15px -3px rgba(213, 191, 191, 0.1), 8px 8px 6px -2px rgb(171, 167, 167);
+}
+
+.whydescriptionleft h3{
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    color: #e5e5e5;
+    
+}
+
+.whydescriptionleft p{
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #9ca3af;
+}
+
+/*why description right*/
+
+.whydescriptionright{
+    background-color: white;
+    padding: 3rem ;
+    max-width: 60%;
+    border-radius: 8px;
+    margin-top: 4rem;
+    margin-right: 6rem;
+    border: 2px solid #111827;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 8px 8px 6px -2px rgb(171, 167, 167);
+    margin-left: auto;
+}
+
+.whydescriptionright h3{
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    color: #000000;
+}
+
+.whydescriptionright p{
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #666666;
+}
+
 
 /* Description Section */
 .description {
