@@ -110,7 +110,22 @@ app.use(cors());
 app.use(limiter);
 
 // Serve static files from the frontend directory
-app.use(express.static(path.join(__dirname, 'frontend')));
+app.use('/js', express.static(path.join(__dirname, 'frontend', 'js'), {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.js')) {
+      res.setHeader('Content-Type', 'application/javascript');
+    }
+  }
+}));
+
+// Also fix SVG, ICO, etc. (bonus)
+app.use(express.static(path.join(__dirname, 'frontend'), {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.svg')) res.setHeader('Content-Type', 'image/svg+xml');
+    if (path.endsWith('.ico')) res.setHeader('Content-Type', 'image/x-icon');
+    if (path.endsWith('.xml')) res.setHeader('Content-Type', 'application/xml');
+  }
+}));
 
 // API Routes
 app.post('/api/enhance-prompt', async (req, res) => {
