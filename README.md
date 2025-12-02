@@ -9,45 +9,34 @@ git add .
 git commit -m "Fix"
 git push origin main
 
-task:
-make count character in social post gen work
-bring that character counter which is in right panel left below the output textarea
 
 
-jj:
+Take my current static website (HTML + CSS + JS only) and turn it into a secure full-stack Node.js + Express app that deploys perfectly on Vercel.
 
-Rename my entire project from Prompthancer to Prompthancer.
-Do the following steps:
+Current project structure (all files are in the root right now):
+- index.html
+- app.html
+- style.css
+- app.js
+- promptenhancer.js
+- socialMediaPostGenerator.js
+- favicon.ico, favicon-16x16.png, etc.
+- folders: fonts/, icons/, images/
+- robots.txt, sitemap.xml, README.md, etc.
 
-Replace all occurrences of Prompthancer, prompthancer, and variations inside my project with Prompthancer.
+Tasks you must complete:
 
-Update project metadata:
+1. Create the perfect folder structure with a separated frontend folder to move current frontend files.
+2. Generate a complete server.js (Express) in the root that:
+   - Serves all static files from /frontend
+   - Has body-parser for JSON and forms
+   - Includes a test route /api/hello that returns { success: true, message: "Backend is live!" }
+   - Uses process.env.PORT for Vercel
+   - Has a catch-all route (*) to serve index.html (SPA behavior)
+3. Generate the exact vercel.json needed for a Node.js/Express app on Vercel.
+4. Generate package.json with only the necessary dependencies (express) and a start script.
+5. Give me the exact terminal commands to run locally to set everything up (mkdir, mv, npm init, npm install, etc.).
+6. Add a .gitignore file that ignores node_modules and .env.
+8. Make sure everything is 100% secure for production (no hardcoded secrets, safe headers, etc.).
 
-HTML titles
-
-meta descriptions
-
-README.md
-
-component names
-
-text content
-
-config files
-
-Rename any files or folders that contain “prompthancer” in the filename to use “prompthancer”.
-
-Update any import paths referring to renamed files.
-
-Ensure the landing page branding, headings, and UI elements reflect the new name Prompthancer.
-
-After changes, list all modified files.
-
-Finally, update my git remote to the new repository name by running:
-
-git remote set-url origin https://github.com/Subaskathayat/prompthancer.git
-
-
-Don’t change functional logic — only rename branding.
-
-Make all changes automatically.
+After this, my site should work exactly as before, but now with a real backend running on the same Vercel domain.
