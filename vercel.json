@@ -1,12 +1,11 @@
 {
   "version": 2,
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/$1" },
-    { "source": "/(.*)", "destination": "/frontend/$1" }
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/server.js" },
+    { "src": "/js/(.*)", "dest": "/frontend/js/$1" },
+    { "src": "/assets/(.*)", "dest": "/frontend/assets/$1" },
+    { "src": "/app.html", "dest": "/frontend/app.html" },
+    { "src": "/index.html", "dest": "/frontend/index.html" },
+    { "src": "/(.*)", "dest": "/server.js" }
   ]
 }
