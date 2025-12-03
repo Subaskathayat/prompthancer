@@ -88,17 +88,17 @@ const limiter = rateLimit({
 
 // Initialize OpenAI / OpenRouter
 const API_KEY = process.env.OPENAI_API_KEY || process.env.OPENROUTER_API_KEY;
-console.log('Initializing OpenAI with API key:', API_KEY ? '***' : 'Not set');
+const HAS_LLM = !!API_KEY;
+console.log('Initializing OpenAI with API key:', HAS_LLM ? '***' : 'Not set');
 
-if (!API_KEY) {
-  console.error('ERROR: OPENAI_API_KEY or OPENROUTER_API_KEY is not set in environment variables');
-  process.exit(1);
+if (!HAS_LLM) {
+  console.warn('OPENAI_API_KEY/OPENROUTER_API_KEY not set. AI endpoints will be disabled, but site will still serve.');
 }
 
-const openai = new OpenAI({
+const openai = HAS_LLM ? new OpenAI({
   apiKey: API_KEY,
   baseURL: process.env.OPENROUTER_API_KEY ? 'https://openrouter.ai/api/v1' : (process.env.OPENAI_BASE_URL || undefined),
-});
+}) : null;
 
 // Default model (can be overridden via env)
 const MODEL_NAME = process.env.MODEL_NAME || (process.env.OPENROUTER_API_KEY ? 'openai/gpt-3.5-turbo' : 'gpt-3.5-turbo-1106');
@@ -118,6 +118,11 @@ app.use('/js', express.static(path.join(__dirname, 'frontend', 'js'), {
   }
 }));
 
+// Health check / basic test route
+app.get('/api/hello', (req, res) => {
+  res.json({ success: true, message: 'Backend is live!' });
+});
+
 // Also fix SVG, ICO, etc. (bonus)
 app.use(express.static(path.join(__dirname, 'frontend'), {
   setHeaders: (res, path) => {
@@ -130,6 +135,9 @@ app.use(express.static(path.join(__dirname, 'frontend'), {
 // API Routes
 app.post('/api/enhance-prompt', async (req, res) => {
   try {
+    if (!HAS_LLM) {
+      return res.status(503).json({ success: false, error: 'LLM API not configured' });
+    }
     const { prompt, tone = 'professional', length = 'medium' } = req.body;
     
     if (!prompt) {
@@ -171,6 +179,9 @@ app.post('/api/enhance-prompt', async (req, res) => {
 
 app.post('/api/generate-social-post', async (req, res) => {
   try {
+    if (!HAS_LLM) {
+      return res.status(503).json({ success: false, error: 'LLM API not configured' });
+    }
     const { platform, topic, style = 'informative', tone = 'friendly' } = req.body;
     
     if (!platform || !topic) {

@@ -75,10 +75,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (input.type === 'password') {
                 input.type = 'text';
-                icon.src = 'icons/Hide.svg';
+                icon.src = '/assets/icons/Hide.svg';
             } else {
                 input.type = 'password';
-                icon.src = 'icons/View.svg';
+                icon.src = '/assets/icons/View.svg';
             }
         });
     });
