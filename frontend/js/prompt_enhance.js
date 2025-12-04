@@ -2,7 +2,7 @@
 class PromptEnhancer {
     constructor(apiKey) {
         this.apiKey = apiKey;
-        this.API_URL = 'https://prompthancer.me/api/enhance-prompt';
+        this.API_URL = 'https://prompthance.me/api/enhance-prompt';
         
         // Initialize DOM elements
         this.promptInput = document.getElementById('prompt-input');
