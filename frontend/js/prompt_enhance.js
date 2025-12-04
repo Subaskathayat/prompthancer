@@ -2,7 +2,7 @@
 class PromptEnhancer {
     constructor(apiKey) {
         this.apiKey = apiKey;
-        this.API_URL = '/api/enhance-prompt';
+        this.API_URL = 'https://prompthancer.onrender.com/api/enhance-prompt';
         
         // Initialize DOM elements
         this.promptInput = document.getElementById('prompt-input');
@@ -50,6 +50,7 @@ Important: Only return the enhanced prompt, no additional text like your enhance
                 content: `Enhance this text into a high-quality AI prompt: ${prompt}`
             }
         ];
+
 
         try {
             const response = await fetch(this.API_URL, {
